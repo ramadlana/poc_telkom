@@ -4,9 +4,6 @@
   gather_facts: false
   connection: network_cli
 
-  tasks:
-    - name: Retrieve IOS-XR version
-      cisco.iosxr.iosxr_command:
-        commands: show version
+
 
             
