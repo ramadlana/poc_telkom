@@ -1,7 +1,7 @@
 ---
 - name: PLAYBOOK-GET-INTERFACE
   hosts: router-core
-  connection: local
+  connection: network_cli
   gather_facts: no
 
   tasks:
