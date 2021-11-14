@@ -1,6 +1,7 @@
 ---
 - name: Update web servers
   hosts: r1
+  gather_facts: no
 
   tasks:
   - name: Example from an Ansible Playbook
