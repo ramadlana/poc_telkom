@@ -5,6 +5,6 @@
   gather_facts: no
 
   tasks:
-  - name: RUN XR Command
-    cisco.iosxr.iosxr:
-      config_commands: ["show interface brief"]
+    - name: RUN XR Command
+      cisco.iosxr.iosxr:
+        config_commands: ["show interface brief"]
