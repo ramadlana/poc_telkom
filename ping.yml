@@ -1,6 +1,6 @@
 ---
 - name: Update web servers
-  hosts: r1
+  hosts: router-core
   connection: local
   gather_facts: no
 
