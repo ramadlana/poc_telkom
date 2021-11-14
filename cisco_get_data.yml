@@ -1,0 +1,20 @@
+---
+- name: play01
+  hosts: r1
+  gather_facts: false
+  connection: network_cli
+
+
+  tasks:
+    - name: Run command and parse with ntc_templates
+      ansible.utils.cli_parse:
+        command: "show interface"
+        parser:
+          name: ansible.netcommon.ntc_templates
+        set_fact: interfaces
+      
+    # PRINT OUTPUT TO CLI
+    - name: Print return on CLI
+      ansible.builtin.debug:
+        msg: "{{interfaces}}"
+            
