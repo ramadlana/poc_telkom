@@ -1,0 +1,10 @@
+---
+- name: PLAYBOOK-GET-INTERFACE
+  hosts: router-core
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: RUN XR Command
+    cisco.iosxr.iosxr:
+      config_commands: ["show interface brief"]

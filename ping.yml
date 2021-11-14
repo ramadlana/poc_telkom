@@ -1,5 +1,5 @@
 ---
-- name: Update web servers
+- name: PING
   hosts: router-core
   connection: local
   gather_facts: no
