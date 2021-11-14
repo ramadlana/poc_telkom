@@ -1,6 +1,6 @@
 ---
 - name: play01
-  hosts: xr1
+  hosts: router-core
   gather_facts: no
   connection: network_cli
 
