@@ -4,12 +4,9 @@
   gather_facts: false
   connection: network_cli
 
-
   tasks:
-    - name: Run command and parse with ntc_templates
-      ansible.utils.cli_parse:
-        command: "show interface"
-        parser:
-          name: ansible.netcommon.ntc_templates
+    - name: Retrieve IOS-XR version
+      cisco.iosxr.iosxr_command:
+        commands: show version
 
             
