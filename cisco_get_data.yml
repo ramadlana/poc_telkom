@@ -11,10 +11,5 @@
         command: "show interface"
         parser:
           name: ansible.netcommon.ntc_templates
-        set_fact: interfaces
-      
-    # PRINT OUTPUT TO CLI
-    - name: Print return on CLI
-      ansible.builtin.debug:
-        msg: "{{interfaces}}"
+
             
