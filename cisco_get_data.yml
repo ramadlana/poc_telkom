@@ -1,9 +1,7 @@
 ---
-- name: play01
+- name: Update web servers
   hosts: r1
-  gather_facts: false
-  connection: network_cli
 
-
-
-            
+  tasks:
+  - name: Example from an Ansible Playbook
+    ansible.builtin.ping:
