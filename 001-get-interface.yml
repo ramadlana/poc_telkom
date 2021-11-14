@@ -6,6 +6,6 @@
 
   tasks:
     - name: RUN XR Command
-      cisco.iosxr.iosxr:
+      cisco.iosxr:
         config_commands: 
           - show interface brief
