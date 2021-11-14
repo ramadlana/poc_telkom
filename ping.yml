@@ -4,5 +4,5 @@
   gather_facts: no
 
   tasks:
-  - name: Example from an Ansible Playbook
+  - name: ping
     ansible.builtin.ping:
