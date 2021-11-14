@@ -1,9 +1,8 @@
 ---
 - name: play01
   hosts: router-core
-  gather_facts: false
+  gather_facts: no
   connection: network_cli
-
 
   tasks:
     - name: run show version on remote devices
