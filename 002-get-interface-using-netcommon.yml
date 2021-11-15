@@ -7,6 +7,6 @@
   tasks:
     - name: run show version on remote devices
       ansible.netcommon.cli_command:
-        command: 
+        commands: 
           - show interface
           - show ip route
