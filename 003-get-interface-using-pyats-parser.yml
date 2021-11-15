@@ -1,0 +1,13 @@
+---
+- name: PLAYBOOK-GET-INTERFACE USING PYATS PARSER
+  hosts: router-core
+  gather_facts: no
+  connection: network_cli
+  
+  tasks:
+    - name: "Run command and parse with pyats"
+      ansible.netcommon.cli_parse:
+        command: show interface
+        parser:
+          name: ansible.netcommon.pyats
+        set_fact: interfaces
