@@ -11,3 +11,5 @@
         parser:
           name: ansible.netcommon.pyats
         set_fact: interfaces
+
+    - debug: msg={{interfaces}}
