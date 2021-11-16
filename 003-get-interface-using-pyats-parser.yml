@@ -7,7 +7,7 @@
   tasks:
     - name: "Run command and parse with pyats"
       ansible.utils.cli_parse:
-        command: show interface
+        command: show interfaces
         parser:
           name: ansible.netcommon.pyats
         set_fact: interfaces
