@@ -1,6 +1,6 @@
 ---
 - name: PING
-  hosts: router-core
+  hosts: router_core
   connection: local
   gather_facts: no
 

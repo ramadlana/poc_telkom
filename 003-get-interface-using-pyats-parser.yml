@@ -1,6 +1,6 @@
 ---
 - name: PLAYBOOK-GET-INTERFACE USING PYATS PARSER
-  hosts: router-core
+  hosts: router_core
   gather_facts: no
   connection: network_cli
   
