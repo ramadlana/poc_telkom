@@ -6,7 +6,7 @@
   
   tasks:
     - name: "Run command and parse with pyats"
-      ansible.netcommon.cli_parse:
+      ansible.utils.cli_parse:
         command: show interface
         parser:
           name: ansible.netcommon.pyats
