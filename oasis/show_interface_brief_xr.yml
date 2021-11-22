@@ -5,9 +5,9 @@
   connection: network_cli
 
   tasks:
-  # SHOW TASKS
     - name: run show version on remote devices
-      cisco.iosxr.iosxr_command:
-        commands: 
-          - show version
-          - show interface brief
+      ansible.netcommon.cli_command:
+        command: '{{item}}'
+      loop:
+        - show interface
+        - show ip route
