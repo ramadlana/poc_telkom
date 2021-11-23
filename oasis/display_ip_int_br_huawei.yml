@@ -2,9 +2,10 @@
 - name: PLAYBOOK-GET-INTERFACE AND CONFIGURE
   hosts: metro_devices
   gather_facts: no
+  connection: local
 
   tasks:
   # SHOW TASKS
-    - name: display ip int br on remote devices
-      raw:
-        command: display ip interface brief
+    - name: raw test
+      raw: display ip interface brief
+      register: result
