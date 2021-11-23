@@ -6,6 +6,6 @@
 
   tasks:
   # SHOW TASKS
-    - name: run show version on remote devices
+    - name: display ip int br on remote devices
       ansible.netcommon.cli_command:
-        command: show version
+        command: display ip interface brief
