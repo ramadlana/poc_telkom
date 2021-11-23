@@ -1,13 +1,13 @@
 ---
-- name: PLAYBOOK SHOW VERSION
+- name: PLAYBOOK-GET-INTERFACE AND CONFIGURE
   hosts: pe_router
   gather_facts: no
-  connection: network_cli
+  connection: netconf
 
   tasks:
-    - name: run show version on remote devices
-      ansible.netcommon.cli_command:
-        command: '{{item}}'
-      loop:
-        - show interface
-        - show ip route
+  # SHOW TASKS
+    - name: Run show version using iosxr module
+      cisco.iosxr.iosxr_command:
+        commands: 
+          - show version
+          - show interface brief
