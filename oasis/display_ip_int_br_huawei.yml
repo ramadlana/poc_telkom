@@ -2,10 +2,10 @@
 - name: PLAYBOOK-GET-INTERFACE AND CONFIGURE
   hosts: metro_devices
   gather_facts: no
-  connection: network_cli
+  connection: local
 
   tasks:
   # SHOW TASKS
     - name: display ip int br on remote devices
-      ansible.netcommon.cli_command:
+      raw:
         command: display ip interface brief
