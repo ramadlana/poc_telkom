@@ -2,7 +2,6 @@
 - name: PLAYBOOK-GET-INTERFACE AND CONFIGURE
   hosts: metro_devices
   gather_facts: no
-  connection: local
 
   tasks:
   # SHOW TASKS
