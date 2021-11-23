@@ -2,7 +2,7 @@
 - name: PLAYBOOK-GET-INTERFACE AND CONFIGURE
   hosts: pe_router
   gather_facts: no
-  connection: network_cli
+  connection: local
 
   tasks:
   # SHOW TASKS

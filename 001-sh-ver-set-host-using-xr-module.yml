@@ -2,7 +2,7 @@
 - name: PLAYBOOK-GET-INTERFACE AND CONFIGURE
   hosts: router_core
   gather_facts: no
-  connection: netconf
+  connection: local
 
   tasks:
   # SHOW TASKS
