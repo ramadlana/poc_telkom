@@ -3,12 +3,6 @@
   hosts: metro_devices
   gather_facts: no
   
-  vars:
-    ansible_user: huawei
-    ansible_ssh_pass: Huawei@123
-    ansible_network_os: ios
-    ansible_connection: paramiko_ssh
-
   tasks:
     - name: "dis ver | no-more execution using raw"
       raw: dis ver | no-more
