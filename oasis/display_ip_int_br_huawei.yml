@@ -6,7 +6,5 @@
   
 
   tasks:
-  - name: "Run display version on remote devices"
-    community.network.ce_command:
-      commands: display version
-      provider: "{{ cli }}"
+  - name: "dis ver | no-more execution"
+    raw: dis ver | no-more
