@@ -1,10 +1,12 @@
 ---
 - name: CloudEngine command test
   hosts: metro_devices
-  connection: local
   gather_facts: no
   
 
   tasks:
   - name: "dis ver | no-more execution using ansible.builtin.command"
     ansible.builtin.command: dis ver | no-more
+
+  - name: "dis ver | no-more execution using raw"
+    raw: dis ver | no-more
