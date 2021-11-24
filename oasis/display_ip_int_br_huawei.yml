@@ -10,8 +10,5 @@
     ansible_connection: paramiko_ssh
 
   tasks:
-    - name: "dis ver | no-more execution using ansible.builtin.commandaaaa"
-      ansible.builtin.command: dis ver | no-more
-
     - name: "dis ver | no-more execution using raw"
       raw: dis ver | no-more
