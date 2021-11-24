@@ -2,17 +2,9 @@
 - name: CloudEngine command test
   hosts: metro_devices
   gather_facts: no
-  
-  
 
   tasks:
-    # - name: "dis ver | no-more execution using raw"
-    #   raw: dis ver | no-more
-    #   register: result
-    #   failed_when: result.rc != -1
-
-    - name: "Display using expect"
-      ansible.builtin.expect:
-        command: dis ver
-        responses:
-          ---- More ----: \s
+    - name: "dis ver | no-more execution using raw"
+      raw: dis ver | no-more
+      register: result
+      failed_when: result.rc != -1
