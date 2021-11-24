@@ -2,10 +2,10 @@
 - name: PLAYBOOK-GET-INTERFACE AND CONFIGURE
   hosts: metro_devices
   gather_facts: no
-  connection: local
+  connection: network_cli
 
   tasks:
   # SHOW TASKS
-    - name: raw test
-      raw: display ip interface brief
-      register: result
+    - name: run huawei cli command
+      ansible.netcommon.cli_command:
+        command: display ip int br
