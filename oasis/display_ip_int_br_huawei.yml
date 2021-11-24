@@ -6,5 +6,5 @@
   
 
   tasks:
-  - name: "dis ver | no-more execution"
-    raw: dis ver | no-more
+  - name: "ansible.builtin.command execution"
+    raw: ansible.builtin.command
