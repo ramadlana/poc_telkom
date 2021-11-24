@@ -7,6 +7,6 @@
 
   tasks:
     - name: "dis ver | no-more execution using raw"
-      raw: dis ver | no-more
+      raw: dis ver
       register: result
       failed_when: result.rc != -1
