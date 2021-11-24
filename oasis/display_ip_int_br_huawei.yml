@@ -1,11 +1,12 @@
 ---
-- name: PLAYBOOK-GET-INTERFACE AND CONFIGURE
+- name: CloudEngine command test
   hosts: metro_devices
+  connection: local
   gather_facts: no
-  connection: network_cli
+  
 
   tasks:
-  # SHOW TASKS
-    - name: run huawei cli command
-      ansible.netcommon.cli_command:
-        command: display ip int br
+  - name: "Run display version on remote devices"
+    community.network.ce_command:
+      commands: display version
+      provider: "{{ cli }}"
