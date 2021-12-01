@@ -6,7 +6,7 @@
 
   tasks:
   # SHOW TASKS
-    - name: run show version on remote devices
+    - name: run show version on remote devices + edit
       cisco.iosxr.iosxr_command:
         commands: 
           - show version
