@@ -4,10 +4,10 @@
   gather_facts: no
   vars:
     cli:
-      host: "{{ inventory_hostname }}"
-      port: "{{ ansible_ssh_port }}"
-      username: "{{ ansible_user }}"
-      password: "{{ ansible_ssh_password }}"
+      host: '{{ hostvars[inventory_hostname].ansible_host }}'
+      port: 22
+      username: '{{ hostvars[inventory_hostname].ansible_user }}'
+      password: '{{ hostvars[inventory_hostname].ansible_ssh_pass }}'
       transport: cli
   tasks:
   - name: "Configure acl configuration and save it"
