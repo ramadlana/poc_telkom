@@ -1,5 +1,5 @@
 - name: CloudEngine config test
-  hosts: metro_access1
+  hosts: metro_devices
   connection: local
   gather_facts: no
   vars:
