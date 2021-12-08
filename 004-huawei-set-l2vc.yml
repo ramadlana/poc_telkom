@@ -3,7 +3,8 @@
   hosts: metro_service
   connection: local
   gather_facts: no
-
+  vars:
+    interface_name: Eth-Trunk6.100
   tasks:
     - name: RUN CALL HUAWEI MODULE
       huawei_config:
