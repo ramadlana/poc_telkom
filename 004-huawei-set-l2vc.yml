@@ -7,7 +7,7 @@
   tasks:
     - name: RUN CALL HUAWEI MODULE
       huawei_config:
-        command: ["interface {{interface_name}}", "vlan-type dot1q 101", "mpls l2vc 1.1.1.1 101", "statistic enable"]
+        command: ["{{interface_name}}", "vlan-type dot1q 101", "mpls l2vc 1.1.1.1 101", "statistic enable"]
         ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
         ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
         ansible_user: '{{ hostvars[inventory_hostname].ansible_user }}'
