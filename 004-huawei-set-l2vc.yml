@@ -1,24 +1,20 @@
-- name: CloudEngine config test
-  hosts: metro_devices
+# ansible-playbook -i inventory_host_huawei.yml playbook_for_module_huawei_display_ip_routing_table.yml
+- name: TEST MULTIPOLAR MODULE HUAWEI CONF
+  hosts: metrodevice
   connection: local
   gather_facts: no
-  vars:
-    cli:
-      host: '{{ hostvars[inventory_hostname].ansible_host }}'
-      port: 22
-      username: '{{ hostvars[inventory_hostname].ansible_user }}'
-      password: '{{ hostvars[inventory_hostname].ansible_ssh_pass }}'
-      transport: cli
+
   tasks:
-  - name: "Configure acl configuration and save it"
-    community.network.ce_config:
-      lines:
-        - rule 10 permit source 1.1.1.1 32
-        - rule 20 permit source 2.2.2.2 32
-        - rule 30 permit source 3.3.3.3 32
-        - rule 40 permit source 4.4.4.4 32
-        - rule 50 permit source 5.5.5.5 32
-      parents: acl 2000
-      before: undo acl 2000
-      match: exact
-      provider: "{{ cli }}"
+    - name: RUN CALL HUAWEI MODULE
+      huawei_config:
+        command: ["interface Eth-Trunk6.101", "vlan-type dot1q 101", "mpls l2vc 1.1.1.1 101", "statistic enable"]
+        ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
+        ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
+        ansible_user: '{{ hostvars[inventory_hostname].ansible_user }}'
+        ansible_ssh_pass: '{{ hostvars[inventory_hostname].ansible_ssh_pass }}'
+        ansible_platform: '{{ hostvars[inventory_hostname].ansible_platform }}'
+      register: output
+
+    - name: PRINT OUTPUT SUCCESS MODULE
+      debug:
+        msg: '{{ output }}'
