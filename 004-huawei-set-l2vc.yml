@@ -1,13 +1,13 @@
 # ansible-playbook -i inventory_host_huawei.yml playbook_for_module_huawei_display_ip_routing_table.yml
 - name: PLAYBOOK CONFIG METRO SERVICE HUAWEI
-  hosts: metro_service
+  hosts: metro_access1
   connection: local
   gather_facts: no
 
   tasks:
     - name: RUN CALL HUAWEI MODULE
       huawei_config:
-        command: ["interface {{interface_name}}", "vlan-type dot1q 101", "mpls l2vc 1.1.1.1 101", "statistic enable"]
+        command: ["interface GigabitEthernet3/0/1.101", "vlan-type dot1q 101", "mpls l2vc 1.1.1.1 101", "statistic enable", "description ANSIBLE-ACCESS-to-Mikrotik"]
         ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
         ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
         ansible_user: '{{ hostvars[inventory_hostname].ansible_user }}'
