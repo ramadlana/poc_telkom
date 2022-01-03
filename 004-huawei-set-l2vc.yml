@@ -6,7 +6,7 @@
 
   tasks:
     - name: RUN CALL HUAWEI MODULE
-      huawei_config:
+      multipolar_huawei_config:
         command: ["interface GigabitEthernet3/0/1.101", "vlan-type dot1q 101", "mpls l2vc 1.1.1.1 101", "statistic enable", "description ANSIBLE-ACCESS-to-Mikrotik"]
         ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
         ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
