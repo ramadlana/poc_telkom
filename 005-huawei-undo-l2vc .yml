@@ -5,9 +5,9 @@
   gather_facts: no
 
   tasks:
-    - name: SET L2VC
+    - name: UNDO MPLS L2VC
       multipolar_huawei_config:
-        command: ["interface GigabitEthernet3/0/1.101", "vlan-type dot1q 101", "mpls l2vc 1.1.1.5 101", "statistic enable", "commit"]
+        command: ["interface GigabitEthernet3/0/1.101", "undo vlan-type dot1q 101", "undo mpls l2vc 1.1.1.5 101", "undo statistic enable","quit", "undo interface GigabitEthernet3/0/1.101", "commit"]
         ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
         ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
         ansible_user: '{{ hostvars[inventory_hostname].ansible_user }}'
