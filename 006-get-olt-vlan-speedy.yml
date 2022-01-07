@@ -1,0 +1,20 @@
+# ansible-playbook -i playbook_dds/hosts.yml playbook_dds/006-get-olt-vlan-speedy.yml 
+- name: TEST MULTIPOLAR MODULE OLT DISPLAY VLAN
+  hosts: huawei_olt
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: RUN CALL HUAWEI OLT MODULE
+      multipolar_huawei_olt_command_display_vlan_desc:
+        ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
+        ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
+        ansible_platform: '{{ hostvars[inventory_hostname].ansible_platform }}'
+        ansible_user: '{{ hostvars[inventory_hostname].ansible_user }}'
+        ansible_ssh_pass: '{{ hostvars[inventory_hostname].ansible_ssh_pass }}'
+      register: output
+
+    # Save Variable into files
+    - name: Copy Varibale to Local Files
+      local_action: copy content={{ output }} dest=/opt/public_var_ansible/var_vlan_desc
+

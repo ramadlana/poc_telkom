@@ -1,0 +1,57 @@
+# ansible-playbook -i playbook_dds/hosts.yml playbook_dds/007-push-config-based-on-read-vlan-speedy-from-files.yml
+- name: PLAYBOOK CONFIG METRO ACCESS HUAWEI BASE ON VLAN DESC on OLT named "INET_TRIAL_ANSIBLE"
+  hosts: metro_access1
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Read Variable VLAND DESC from /opt/public_var_ansible/var_vlan_desc
+    include_vars:
+      file: /opt/public_var_ansible/var_vlan_desc
+      name: vlan_desc
+  
+  - name: Read Variable METRO Loopback Pair from /opt/public_var_ansible/metro_pair
+    include_vars:
+      file: /opt/public_var_ansible/metro_pair
+      name: metro_pair
+  
+  - name: SET L2VC on Metro access
+    multipolar_huawei_config:
+      command: ["interface GigabitEthernet3/0/1.{{item.vlan}}", "vlan-type dot1q {{item.vlan}}", "mpls l2vc {{metro_pair.dds.metro_service}} {{item.vlan}}", "statistic enable", "commit"]
+      ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
+      ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
+      ansible_user: '{{ hostvars[inventory_hostname].ansible_user }}'
+      ansible_ssh_pass: '{{ hostvars[inventory_hostname].ansible_ssh_pass }}'
+      ansible_platform: '{{ hostvars[inventory_hostname].ansible_platform }}'
+    when: item.desc is search("INET_TRIAL_ANSIBLE")
+    with_items: '{{ vlan_desc.return_from_devices }}'
+    register: output
+
+- name: PLAYBOOK CONFIG METRO SERVICE HUAWEI BASE ON VLAN DESC on OLT named "INET_TRIAL_ANSIBLE"
+  hosts: metro_service1
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Read Variable VLAND DESC from /opt/public_var_ansible/var_vlan_desc
+    include_vars:
+      file: /opt/public_var_ansible/var_vlan_desc
+      name: vlan_desc
+
+  - name: Read Variable METRO Loopback Pair from /opt/public_var_ansible/metro_pair
+    include_vars:
+      file: /opt/public_var_ansible/metro_pair
+      name: metro_pair
+
+  - name: SET L2VC on metro_service1 based on vlan desc
+    multipolar_huawei_config:
+      command: ["interface Eth-Trunk6.{{item.vlan}}", "vlan-type dot1q 100", "mpls l2vc {{metro_pair.dds.metro_access}} {{item.vlan}}", "statistic enable", "commit"]
+      ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
+      ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
+      ansible_user: '{{ hostvars[inventory_hostname].ansible_user }}'
+      ansible_ssh_pass: '{{ hostvars[inventory_hostname].ansible_ssh_pass }}'
+      ansible_platform: '{{ hostvars[inventory_hostname].ansible_platform }}'
+    when: item.desc is search("INET_TRIAL_ANSIBLE")
+    with_items: '{{ vlan_desc.return_from_devices }}'
+    register: output
+

@@ -1,5 +1,5 @@
-# ansible-playbook -i inventory_host_huawei.yml playbook_for_module_huawei_display_ip_routing_table.yml
-- name: PLAYBOOK CONFIG METRO SERVICE HUAWEI
+#  ansible-playbook -i playbook_dds/hosts.yml playbook_dds/005-huawei-undo-l2vc.yml
+- name: PLAYBOOK CONFIG METRO SERVICE HUAWEI-2
   hosts: metro_access1
   connection: local
   gather_facts: no
