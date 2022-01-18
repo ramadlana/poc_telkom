@@ -1,4 +1,4 @@
-# ansible-playbook -i playbook_test/inventory_host_dds.yml playbook_test/playbook_for_module_huawei_olt_config_service_port.yml
+# ansible-playbook -i hosts.yml 008a-huawei_olt_config_service_port.yml
 - name: EXCEED VLAN MOVE 
   hosts: huawei_olt
   connection: local
@@ -8,6 +8,7 @@
     target_gemindex: '3'
     vlan_max_subs: 17
     subscriber_to_move: 8
+    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
     - name: Get all available vlan 

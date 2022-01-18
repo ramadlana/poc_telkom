@@ -1,4 +1,4 @@
-# ansible-playbook -i playbook_test/inventory_host_dds.yml playbook_test/playbook_for_module_huawei_olt_config_service_port_undo.yml
+# ansible-playbook -i hosts.yml 008b-huawei_olt_config_service_port_undo.yml
 - name: UNDO-DEMO- EXCEED VLAN MOVE 
   hosts: huawei_olt
   connection: local
