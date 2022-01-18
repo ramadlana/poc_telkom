@@ -1,0 +1,25 @@
+- name: EXCEED VLAN MOVE 
+  hosts: "{{huawei_host}}"
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Read Variable VLAND DESC from /opt/public_var_ansible/display_vlan_all
+      include_vars:
+        file: /opt/public_var_ansible/display_vlan_all
+        name: display_vlan_all
+    
+    # - name: Raise Fail
+    #   fail:
+    #     msg: Fail no vlan more than 4000
+    #   when: display_vlan_all.return_from_devices != "to-be-staged"
+    #   with_items: "{{display_vlan_all.return_from_devices}}"
+
+    - name: Get exceed vlan (subs more than {{ vlan_max_subs }})
+      set_fact:
+        exceed_vlan: '{{item.vlan}}'
+      when: item.servportnum > "10"
+      with_items: "{{display_vlan_all.return_from_devices}}"
+    
+    - name: log
+      debug:
+        msg: "{{exceed_vlan}}"

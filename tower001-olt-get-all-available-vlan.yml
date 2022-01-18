@@ -1,0 +1,23 @@
+# Get available vlan with exceed and write variable into /opt/public_var_ansible/display_vlan_all
+#  ansible-playbook -i hosts.yml tower001-olt-get-all-available-vlan.yml --extra-vars="huawei_host=olt_1"
+
+- name: EXCEED VLAN MOVE 
+  hosts: "{{huawei_host}}"
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Get all available vlan 
+      multipolar_huawei_olt_command_display_anything:
+        olt_display_command: 'display vlan all'
+        ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
+        ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
+        ansible_platform: '{{ hostvars[inventory_hostname].ansible_platform }}'
+        ansible_user: '{{ hostvars[inventory_hostname].ansible_user }}'
+        ansible_ssh_pass: '{{ hostvars[inventory_hostname].ansible_ssh_pass }}'
+      register: all_vlan
+    
+    # variable to files
+    - name: Copy Varibale to Local Files
+      local_action: copy content={{ all_vlan }} dest=/opt/public_var_ansible/display_vlan_all
+    
