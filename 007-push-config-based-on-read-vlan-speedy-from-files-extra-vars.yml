@@ -1,4 +1,5 @@
-# ansible-playbook -i playbook_dds/hosts.yml playbook_dds/007-push-config-based-on-read-vlan-speedy-from-files.yml
+# ansible-playbook -i playbook_poc/hosts.yml playbook_poc/007-push-config-based-on-read-vlan-speedy-from-files.yml -e "ms_to_bras=Eth-Trunk6 metro_access_interface_to_olt=GigabitEthernet3/0/1 metro_service_to_bras_vlan=100"
+
 - name: PLAYBOOK CONFIG METRO ACCESS HUAWEI BASE ON VLAN DESC on OLT named "INET_TRIAL_ANSIBLE"
   hosts: metro_access1
   connection: local
@@ -17,7 +18,7 @@
   
   - name: SET L2VC on Metro access
     multipolar_huawei_config:
-      command: ["interface GigabitEthernet3/0/1.{{item.vlan}}", "vlan-type dot1q {{item.vlan}}", "mpls l2vc {{metro_pair.dds.metro_service}} {{item.vlan}}", "statistic enable", "commit"]
+      command: ["interface {{ metro_access_interface_to_olt }}.{{item.vlan}}", "vlan-type dot1q {{item.vlan}}", "mpls l2vc {{metro_pair.dds.metro_service}} {{item.vlan}}", "statistic enable", "commit"]
       ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
       ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
       ansible_user: '{{ hostvars[inventory_hostname].ansible_user }}'
@@ -45,7 +46,7 @@
 
   - name: SET L2VC on metro_service1 based on vlan desc
     multipolar_huawei_config:
-      command: ["interface Eth-Trunk6.{{item.vlan}}", "vlan-type dot1q 100", "mpls l2vc {{metro_pair.dds.metro_access}} {{item.vlan}}", "statistic enable", "commit"]
+      command: ["interface {{ms_to_bras}}.{{item.vlan}}", "vlan-type dot1q {{metro_service_to_bras_vlan}}", "mpls l2vc {{metro_pair.dds.metro_access}} {{item.vlan}}", "statistic enable", "commit"]
       ansible_host: '{{ hostvars[inventory_hostname].ansible_host }}'
       ansible_network_os: '{{ hostvars[inventory_hostname].ansible_network_os }}'
       ansible_user: '{{ hostvars[inventory_hostname].ansible_user }}'

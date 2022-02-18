@@ -1,4 +1,4 @@
-# ansible-playbook -i playbook_dds/hosts.yml playbook_dds/006-get-olt-vlan-speedy.yml 
+# ansible-playbook -i playbook_poc/hosts.yml playbook_poc/006-get-olt-vlan-speedy.yml  
 - name: TEST MULTIPOLAR MODULE OLT DISPLAY VLAN
   hosts: huawei_olt
   connection: local

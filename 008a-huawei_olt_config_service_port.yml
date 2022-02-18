@@ -4,10 +4,10 @@
   connection: local
   gather_facts: no
   vars:
-    designated_vlan: '3002'
-    target_gemindex: '3'
+    # designated_vlan: '3002'
+    # target_gemindex: '3'
     vlan_max_subs: 17
-    subscriber_to_move: 8
+    # subscriber_to_move: 8
 
   tasks:
     - name: Get all available vlan 
